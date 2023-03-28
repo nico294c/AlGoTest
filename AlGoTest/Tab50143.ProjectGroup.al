@@ -5,9 +5,15 @@ table 50143 "Project Group"
 
     fields
     {
-        field(1; "Project Group No."; Code[20])
+        field(1; "Project Group No."; Integer)
         {
             Caption = 'Project Group No.';
+            DataClassification = ToBeClassified;
+            AutoIncrement = true;
+        }
+        field(2; "Group Name"; Text[30])
+        {
+            Caption = 'Project group name';
             DataClassification = ToBeClassified;
         }
     }
