@@ -31,6 +31,12 @@ table 50140 Project
             Caption = 'Project Group No.';
             DataClassification = ToBeClassified;
         }
+        field(6; "No. Series"; Code[20])
+        {
+            Caption = 'No. Series';
+            Editable = false;
+            TableRelation = "No. Series";
+        }
     }
     keys
     {
@@ -39,4 +45,17 @@ table 50140 Project
             Clustered = true;
         }
     }
+
+    trigger OnInsert()
+    var
+        ProjectSetup: Record "Project Setup";
+        NoSeriesMgt: Codeunit NoSeriesManagement;
+    begin
+        if "Project No." = '' then begin
+            ProjectSetup.Get();
+            ProjectSetup.TestField("Project Nos.");
+            NoSeriesMgt.InitSeries(ProjectSetup."Project Nos.", xRec."No. Series", 0D, "Project No.", "No. Series");
+        end;
+
+    end;
 }

@@ -5,10 +5,11 @@ table 50142 "Time Registration"
 
     fields
     {
-        field(1; "Registration No."; Code[20])
+        field(1; "Registration No."; Integer)
         {
             Caption = 'Registration No.';
             DataClassification = ToBeClassified;
+            AutoIncrement = true;
         }
         field(2; "Employee No."; Code[20])
         {
