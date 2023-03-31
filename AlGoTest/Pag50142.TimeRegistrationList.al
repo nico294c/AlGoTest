@@ -4,7 +4,8 @@ page 50142 TimeRegistrationList
     Caption = 'TimeRegistrationList';
     PageType = List;
     SourceTable = "Time Registration";
-    
+    UsageCategory = Lists;
+
     layout
     {
         area(content)

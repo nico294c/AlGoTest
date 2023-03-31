@@ -6,7 +6,7 @@ pageextension 50140 EmployeeCardExt extends "Employee Card"
         {
             group("Project Group")
             {
-                field("Assign Project Group"; "Project Group")
+                field("Assign Project Group"; Rec."Project Group")
                 {
 
                 }

@@ -22,12 +22,18 @@ table 50142 "Time Registration"
             Caption = 'Hours Registered';
             DataClassification = ToBeClassified;
         }
-        field(4; "Project No."; Code[20])
+        field(4; "Project Group"; Code[20])
         {
-            TableRelation = Project."Project No.";
-            Caption = 'Project No.';
-            DataClassification = ToBeClassified;
+
+            TableRelation = "Project Group"."Project Group No.";
+            Caption = 'Project Group';
         }
+        field(5; "Project No."; Code[20])
+        {
+            TableRelation = Project."Project No." where("Project Group No." = field("Project Group"));
+            Caption = 'Project No.';
+        }
+
     }
     keys
     {
@@ -36,4 +42,18 @@ table 50142 "Time Registration"
             Clustered = true;
         }
     }
+
+    trigger OnInsert()
+    var
+        ProjectRec: Record Project;
+    begin
+        if ProjectRec.Get(Rec."Project No.") then begin
+            ProjectRec."Used Hours" := ProjectRec."Used Hours" + Rec."Hours Registered";
+            ProjectRec.Modify(false);
+        end;
+    end;
+
+
+    var
+        EmployeeRec: Record Employee;
 }

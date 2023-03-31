@@ -58,4 +58,17 @@ table 50140 Project
         end;
 
     end;
+
+    trigger OnDelete()
+    var
+        PostedProject: Record "Posted Project";
+    begin
+        PostedProject.Init();
+        PostedProject."Project No." := Rec."Project No.";
+        PostedProject."Project Name" := Rec."Project Name";
+        PostedProject."Estimated Hours" := Rec."Estimated Hours";
+        PostedProject."Project Group No." := Rec."Project Group No.";
+        PostedProject."Used Hours" := Rec."Used Hours";
+        PostedProject.Insert();
+    end;
 }
